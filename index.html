@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi favorita: Carla</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital@0;1&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-claro: #e0f2fe;
+            --azul-medio: #7dd3fc;
+            --azul-fuerte: #0369a1;
+            --texto: #1e293b;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--azul-claro), var(--azul-medio));
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: var(--texto);
+        }
+
+        /* Lluvia de rosas y dulces */
+        .elemento {
+            position: absolute;
+            top: -50px;
+            font-size: 25px;
+            animation: fall linear forwards;
+            z-index: 0;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Sobre / Carta */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: scale(1.02); }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--azul-fuerte);
+            margin-bottom: 20px;
+        }
+
+        .letter-content {
+            display: none; /* Se muestra al hacer click */
+            font-family: 'Playfair Display', serif;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: left;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .letter-content i { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--azul-fuerte); }
+
+        .click-me {
+            font-weight: bold;
+            color: var(--azul-fuerte);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Scrollbar personalizada para que parezca un libro viejo */
+        .letter-content::-webkit-scrollbar { width: 5px; }
+        .letter-content::-webkit-scrollbar-thumb { background: var(--azul-medio); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="mainCard">
+        <div id="intro">
+            <h1>Para Carla 📖</h1>
+            <p>Sé que amas los libros, así que esta es una página solo para ti...</p>
+            <p class="click-me">Toca para abrir</p>
+        </div>
+
+        <div class="letter-content" id="content">
+            <p>Carla, para ser sincero, me cuesta muchísimo hacer esto. Jamás le había escrito una carta a alguien, pero tú te lo mereces todo.</p>
+            <p>Te amo mucho más de lo que alguna vez creí posible; sé que no eres perfecta, pero es que te quiero precisamente así, con todas tus imperfecciones. Te amo por lo que eres y por la increíble chica que demuestras ser cada día.</p>
+            <p>Gracias por fijarte en mi. Antes de que llegaras, todo me resultaba un poco insípido; tú le diste color a mi vida, mucha alegría y... bueno, ¡muchos dulces también! 🧁</p>
+            <p>Amo cada pequeño momento a tu lado. Si el destino estuviera en mis manos, te elegiría a ciegas para pasar el resto de mi vida contigo.</p>
+            <p>Te tengo presente en todo: veo el cielo y me recuerda a tus ojos; veo una flor y aparece tu sonrisa.</p>
+            <p>Mi alma se llena de gratitud al verte. Gracias por existir. 🌹</p>
+            <p style="text-align: right;"><i>Te amo más de lo que imaginas.</i></p>
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('mainCard');
+        const intro = document.getElementById('intro');
+        const content = document.getElementById('content');
+
+        
+        function crearElemento() {
+            const elementos = ['🌹', '💙', '🧁', '📖', '✨'];
+            const e = document.createElement('div');
+            e.classList.add('elemento');
+            e.innerText = elementos[Math.floor(Math.random() * elementos.length)];
+            e.style.left = Math.random() * 100 + "vw";
+            e.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(e);
+
+            setTimeout(() => { e.remove(); }, 5000);
+        }
+
+        setInterval(crearElemento, 300);
+
+        // Abrir la carta
+        card.addEventListener('click', () => {
+            intro.style.display = 'none';
+            content.style.display = 'block';
+            card.style.cursor = 'default';
+        });
+    </script>
+</body>
+</html>
