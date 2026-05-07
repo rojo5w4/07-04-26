@@ -98,19 +98,13 @@
          }
 
         .signature-image {
-            max-width: 120px;       /* Ajusta el tamaño aquí */
+            max-width: 100px;       /* Ajusta el tamaño aquí */
             height: auto;
+         }
+
+        filter: invert(1) brightness(1.5) contrast(1.2) sepia(1) saturate(5) hue-rotate(170deg) drop-shadow(0 0 5px #38bdf8);
     
-    /* TRUCO TÉCNICO: 
-       1. Invert(1): Convierte el fondo blanco en negro y la tinta negra en blanca.
-       2. Brightness: Le da fuerza al trazo.
-       3. Hue-rotate: Cambia el blanco a un tono azul/celeste.
-       4. Drop-shadow: Crea un efecto neón suave.
-    */
-    filter: invert(1) brightness(1.5) contrast(1.2) sepia(1) saturate(5) hue-rotate(170deg) drop-shadow(0 0 5px #38bdf8);
-    
-    /* Esto asegura que cualquier resto de gris del papel desaparezca */
-    mix-blend-mode: screen; 
+        mix-blend-mode: screen; 
 }
     </style>
 </head>
